@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Enrollment Dashboard</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="Logos.png" type="image/png">
+
+    <style>
+
+        /* General Reset */
+        * {
+
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+             
+        }
+
+        body {
+
+            font-family: Arial, sans-serif;
+            background-color: #6C8EA0; /* Light blue background */
+
+        }
+
+        /* Login Page Styling */
+        .login-container {
+
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin: 100px auto;
+
+        }
+
+        .login-container h2 {
+
+            margin-bottom: 20px;
+
+        }
+
+        .login-container input {
+
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+        }
+
+        .login-container button {
+
+            width: 100%;
+            padding: 10px;
+            background-color: #3571AC;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+
+        }
+
+        .login-container button:hover {
+
+            background-color: #004A7C;
+
+        }
+
+        .error-message {
+
+            color: red;
+            font-size: 14px;
+
+        }
+
+        /* Dashboard Styling */
+        .dashboard-container {
+
+            display: none;
+            height: 100vh;
+            background-image: url('Capitol-University-Friendship-Park-3.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+
+        .container {
+
+            display: flex;
+            height: 100vh;
+
+        }
+
+        /* Sidebar */
+        .sidebar {
+
+            background-color: #3571AC; /* Darker blue */
+            padding: 20px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .sidebar button {
+
+            background-color: #004A7C;
+            border: none;
+            color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            text-align: left;
+
+        }
+
+        .sidebar button.logout {
+
+            background-color: #004A7C;
+            margin-top: auto;
+
+        }
+
+        .sidebar button:hover {
+
+            background-color: #1A5A8D;
+
+        }
+
+        /* Main Content */
+        .main-content {
+
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+
+        }
+
+        .search-bar {
+
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+
+        }
+
+        .search-bar input {
+
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            width: 300px;
+
+        }
+
+        .search-bar .search-btn {
+
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            margin-left: 10px;
+
+        }
+
+        .stats {
+
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+
+        }
+
+        .stat-card {
+
+            background-color: #A8C6D4; /* Light blue-grey */
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+            text-align: center;
+
+        }
+
+        .stat-card img {
+
+            width: 60px;
+            margin-bottom: 10px;
+
+        }
+
+        .stat-card p {
+
+            font-size: 20px;
+
+        }
+
+        /* Slider and Still Images Styling */
+        .slider-container {
+
+            display: flex;
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 100%;
+
+        }
+
+        .slider {
+
+            flex: 2;
+            max-width: 40%;
+
+        }
+
+        .slides {
+
+            display: none;
+            width: 80%;
+
+        }
+
+        .still-images {
+
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+        }
+
+        .still-images img {
+
+            width: 600px;
+            height: 200px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+
+        }
+
+        .gallery {
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+
+        }
+
+        .gallery img {
+
+            width: 33.33%;;
+            height: 150px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+
+        }
+
+        .fa {
+
+            padding: 20px;
+            font-size: 15px;
+            width: 50px;
+            text-align: center;
+            text-decoration: none;
+
+        }
+
+        .fa-twitter {
+
+            background: #55ACEE;
+            color: white;
+
+        }
+
+        .fa-facebook {
+
+            background: #3B5998;
+            color: white;
+
+        }
+
+        .fa-instagram {
+
+            background: #ee2a7b;
+            color: white;
+
+        }
+
+        .fa-linkedin{
+
+            background: #0A66C2;
+            color: white;
+
+        }
+
+        iframe {
+
+            width: 100%;
+            height: 300px;
+            border: none;
+            margin-top: 20px;
+
+        }
+
+        #logos {
+
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+
+        }
+
+        #cslogo, #culogo {
+
+            width: 100px; /* Adjust as needed */
+            height: auto;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="logos">
+        
+        <img id="cslogo" src="cs.png">
+        <img id="culogo" src="cu.png">
+        
+    </div>
+
+    <!-- Login Page -->
+    <div class="login-container" id="loginContainer">
+
+        <h2>Login</h2>
+
+        <form id="loginForm">
+
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+
+            <div class="error-message" id="error-message"></div>
+
+        </form>
+
+    </div>
+
+    <!-- Dashboard Page -->
+    <div class="dashboard-container" id="dashboardContainer">
+
+        <div class="container">
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+
+                <a href="index.html"><button>Dashboard</button></a>
+                <a href="StudentsPage.html"><button id="studentsBtn">Students</button></a>
+                <a href="CoursesPage.html"><button id="coursesBtn">Courses</button></a>
+                <a href="UsersPage.html"><button id="usersBtn">Users</button></a>
+                <button class="logout" id="logoutBtn">Logout</button>
+
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+
+                <!-- Search Bar -->
+                <div class="search-bar">
+
+                    <input type="text" id="searchInput" placeholder="Search...">
+                    <button class="search-btn" id="searchBtn">🔍</button>
+
+                </div>
+
+                <!-- Stats Section -->
+                <div class="stats">
+
+                    <div class="stat-card">
+
+                        <h3>Total Students</h3>
+
+                        <img src="student.png" id="StudLogo">
+                        <p id="total-students">150</p>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <h3>Total Courses</h3>
+
+                        <img src="courses.png" id="CourLogo">
+                        <p id="total-courses">12</p>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <h3>Total Enrollments</h3>
+
+                        <img src="enrollment.png" id="EnrollLogo">
+                        <p id="total-enrollments">300</p>
+
+                    </div>
+
+                </div>
+
+                <!-- Slider and Still Images -->
+                <div class="slider-container">
+                    <!-- Image Slider -->
+                    <div class="slider">
+
+                        <img class="slides" src="GalaxyHeeler.png">
+                        <img class="slides" src="BanditHeeler.png">
+                        <img class="slides" src="Lands.png">
+
+                    </div>
+
+                    <!-- Still Images Section -->
+                    <div class="still-images">
+
+                        <img src="multi.jpg">
+
+                    </div>
+
+                </div>
+
+                <!-- YouTube Embed -->
+                <iframe src="https://www.youtube.com/embed/B0KrjOE3g-Q"></iframe>
+
+                <!-- Google Map Embed -->
+                <iframe src="https://maps.google.com/maps?q=New York&t=&z=10&ie=UTF8&iwloc=&output=embed"></iframe>
+
+
+                 <!-- Social Media Icons -->
+                 <div class="social-icons">
+
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        // Toggle Dashboard Display
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        document.getElementById("loginContainer").style.display = "none";
+        document.getElementById("dashboardContainer").style.display = "block";
+        document.getElementById("logos").style.display = "none"; // Hide logos on the dashboard
+    });
+
+    // Logout Button Functionality
+    document.getElementById("logoutBtn").addEventListener("click", function () {
+        document.getElementById("loginContainer").style.display = "block";
+        document.getElementById("dashboardContainer").style.display = "none";
+        document.getElementById("logos").style.display = "flex"; // Show logos on the login page
+    });
+
+        // Toggle Dashboard Display
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            document.getElementById("loginContainer").style.display = "none";
+            document.getElementById("dashboardContainer").style.display = "block";
+        });
+
+        // Logout Button Functionality
+        document.getElementById("logoutBtn").addEventListener("click", function () {
+            document.getElementById("loginContainer").style.display = "block";
+            document.getElementById("dashboardContainer").style.display = "none";
+        });
+
+
+        document.getElementById("studentsBtn").addEventListener("click", function() {
+            window.location.href = "StudentsPage.html";
+        });
+
+        document.getElementById("coursesBtn").addEventListener("click", function() {
+            window.location.href = "CoursesaPage.html";
+        });
+
+        document.getElementById("usersBtn").addEventListener("click", function() {
+            window.location.href = "UsersPage.html";
+        });
+
+        // Image Slider Functionality
+        let slideIndex = 0;
+        const slides = document.getElementsByClassName("slides");
+
+        function showSlides() {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) slideIndex = 1;
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+
+        showSlides();
+
+    </script>
+
+</body>
+</html>

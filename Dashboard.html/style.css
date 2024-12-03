@@ -1,0 +1,31 @@
+.container{
+
+    display: block;
+    padding: 20px;
+    background-color: #e1f0f6;
+    border-radius: 10px;
+    margin-top: 20px;
+
+}
+
+.Dash{
+
+    background-color: #004A7C;
+    border: none;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: left;
+
+}
+
+body{
+
+    background-image: url('Capitol-University-Friendship-Park-3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
